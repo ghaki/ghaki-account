@@ -22,8 +22,8 @@ module Ghaki module Account module WinDosTesting
     context 'class' do
       subject { WinDos }
       specify { subject.ancestors.should include(Base) }
-      it { should respond_to :from_opts }
-      it { should respond_to :purge_opts }
+      specify { subject.ancestors.should include(UserDomain) }
+      specify { subject.ancestors.should include(DomainAddress) }
     end
 
     ########################################################################
@@ -54,14 +54,6 @@ module Ghaki module Account module WinDosTesting
 
     ########################################################################
     # OBJECT TESTS
-    ########################################################################
-    context 'objects' do
-      subject { WinDos.new }
-      it { should respond_to :expand_opts }
-      it { should respond_to :collapse_opts }
-      it { should respond_to :to_s }
-    end
-
     ########################################################################
     context 'object methods' do
 

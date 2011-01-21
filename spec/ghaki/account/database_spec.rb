@@ -17,6 +17,10 @@ module Ghaki module Account module DatabaseTesting
     context 'class' do
       subject { Database }
       specify { subject.ancestors.should include(Base) }
+      specify { subject.ancestors.should include(DB_Name) }
+      specify { subject.ancestors.should include(DB_Port) }
+      specify { subject.ancestors.should include(DB_Driver) }
+      specify { subject.ancestors.should include(DB_Connect) }
     end
 
     ########################################################################
@@ -44,17 +48,6 @@ module Ghaki module Account module DatabaseTesting
         end
       end
 
-    end
-
-    ########################################################################
-    context 'object' do
-      subject { Database.new }
-      context 'partial included features' do
-        it { should respond_to :db_driver }
-        it { should respond_to :db_name }
-        it { should respond_to :db_port }
-        it { should respond_to :db_connect }
-      end
     end
 
     ########################################################################

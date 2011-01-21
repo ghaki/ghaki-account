@@ -22,6 +22,10 @@ module Ghaki module Account module BaseTesting
 
     ########################################################################
     context 'class' do
+      specify { Base.ancestors.should include(Hostname) }
+      specify { Base.ancestors.should include(Username) }
+      specify { Base.ancestors.should include(Password) }
+      specify { Base.ancestors.should include(EMailAddress) }
       subject { Base }
       it { should respond_to :from_opts }
       it { should respond_to :purge_opts }
