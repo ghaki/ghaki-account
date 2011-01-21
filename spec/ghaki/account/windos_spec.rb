@@ -20,7 +20,8 @@ module Ghaki module Account module WinDosTesting
 
     ########################################################################
     context 'class' do
-      subject { Base }
+      subject { WinDos }
+      specify { subject.ancestors.should include(Base) }
       it { should respond_to :from_opts }
       it { should respond_to :purge_opts }
     end
@@ -38,7 +39,7 @@ module Ghaki module Account module WinDosTesting
         it 'should pass thru whole' do
           acc = WinDos.from_opts(OPTS_ALL)
           opts = { :account => acc }
-          WinDos.from_opts(opts).should == acc
+          WinDos.from_opts(opts).should eql(acc)
         end
       end
 
@@ -56,17 +57,9 @@ module Ghaki module Account module WinDosTesting
     ########################################################################
     context 'objects' do
       subject { WinDos.new }
-
-      context 'included features' do
-        it { should respond_to :username }
-        it { should respond_to :userdomain }
-        it { should respond_to :domain_address }
-      end
-      context 'new features' do
-        it { should respond_to :expand_opts }
-        it { should respond_to :collapse_opts }
-        it { should respond_to :to_s }
-      end
+      it { should respond_to :expand_opts }
+      it { should respond_to :collapse_opts }
+      it { should respond_to :to_s }
     end
 
     ########################################################################
