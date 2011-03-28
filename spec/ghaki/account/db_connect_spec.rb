@@ -1,4 +1,5 @@
 ############################################################################
+require 'mocha_helper'
 require 'ghaki/account/db_connect'
 require File.join(File.dirname(__FILE__),'syn_opts_helper')
 

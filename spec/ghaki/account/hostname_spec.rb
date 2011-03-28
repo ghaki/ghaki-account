@@ -32,9 +32,7 @@ module Ghaki module Account module HostnameTesting
         end
         it 'should get socket name' do
           ENV.delete('HOSTNAME')
-          flexmock(:safe,Socket) do |fm|
-            fm.should_receive(:gethostname).and_return('host')
-          end
+          ::Socket.stub( :gethostname => 'host' )
           subject.get_env.should == 'host'
         end
       end
@@ -97,10 +95,8 @@ module Ghaki module Account module HostnameTesting
       #---------------------------------------------------------------------
       describe '#ask_hostname' do
         before(:each) do
-          @high_mock = flexmock()
-          flexmock(:safe,HighLine) do |fm|
-            fm.should_receive(:new).and_return(@high_mock)
-          end
+          @high_mock = stub_everything()
+          ::HighLine.stubs( :new => @high_mock )
         end
         it 'should grab hostname' do
           @high_mock.should_receive(:ask).and_return('host')

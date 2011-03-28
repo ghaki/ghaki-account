@@ -56,8 +56,8 @@ module Ghaki module Account module SynOptsHelper
         end
       end
       it 'should accept account value' do
-        account = flexmock()
-        account.should_receive(test.source).and_return(test.value)
+        account = mock()
+        account.expects(test.source).returns(test.value)
         subject.parse_opts( { :account => account } ).should == test.value
       end
     end
