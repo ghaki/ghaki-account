@@ -51,11 +51,11 @@ module Ghaki module Account module SynOptsHelper
 
     describe '#parse_opts' do
       test.names.each do |name|
-        it "should accept option <#{name}>" do
+        it "accepts option <#{name}>" do
           subject.parse_opts( { name => test.value } ).should == test.value
         end
       end
-      it 'should accept account value' do
+      it 'accepts account value' do
         account = mock()
         account.expects(test.source).returns(test.value)
         subject.parse_opts( { :account => account } ).should == test.value
@@ -64,7 +64,7 @@ module Ghaki module Account module SynOptsHelper
 
     describe '#purge_opts' do
       test.names.each do |name|
-        it "should remove option <#{name}>" do
+        it "removes option <#{name}>" do
           subject.purge_opts( { name => test.value } ).should eql({})
         end
       end
@@ -78,7 +78,7 @@ module Ghaki module Account module SynOptsHelper
     subject { test.child.new }
     describe "##{test.target}" do
       test.names.each do |name|
-        it "should accept option <#{name}>" do
+        it "accepts option <#{name}>" do
           subject.send( test.target, { name => test.value } )
           subject.send( test.source ).should == test.value
         end
