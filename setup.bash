@@ -1,5 +1,4 @@
 export GK_PROJECT_IDEPS=( \
-  "$(pwd)/../ghaki-env" \
   )
 export GK_PROJECT_GO_DIRS=( \
   "lib:${GK_PROJECT_DIR}/lib/ghaki/account" \
