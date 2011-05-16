@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'highline', '>= 1.5.1'
 
   s.add_development_dependency 'rspec', '>= 2.4.0'
-  s.add_development_dependency 'flexmock', '>= 0.8.6'
+  s.add_development_dependency 'mocha', '>= 0.9.12'
 
   s.has_rdoc = true
   s.extra_rdoc_files = ['README']
