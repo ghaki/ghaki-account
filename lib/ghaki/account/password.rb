@@ -51,9 +51,12 @@ module Password
   def fail_password
     _bad_passwords.push _try_passwords.shift
   end
+  def retry_password?
+    !_try_passwords.empty?
+  end
 
   def valid_password?
-    ! self.passwords.empty?
+    !passwords.empty?
   end
 
   def ask_password opts={}

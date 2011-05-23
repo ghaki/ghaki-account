@@ -77,6 +77,21 @@ describe Password do
       end
     end
 
+    describe '#retry_password?' do
+      it 'handles no passwords' do
+        subject.retry_password?.should be_false
+      end
+      it 'detects available password retries' do
+        subject.passwords = ['a','b']
+        subject.retry_password?.should be_true
+      end
+      it 'detects exhausted password retries' do
+        subject.passwords = ['a']
+        subject.fail_password
+        subject.retry_password?.should be_false
+      end
+    end
+
     describe '#reset_passwords' do
       it 'resets password attempts' do
         subject.passwords = ['a','b']
