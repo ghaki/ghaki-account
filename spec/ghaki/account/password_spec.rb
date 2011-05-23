@@ -25,11 +25,67 @@ describe Password do
     syn_opts_test_object :password
     syn_opts_test_object_methods :password
 
-    it { should respond_to :password }
-    it { should respond_to :password= }
+    describe '#passwords' do
+      it 'defaults empty when unset' do
+        subject.passwords.should be_empty
+      end
+    end
 
-    #---------------------------------------------------------------------
-    it { should respond_to :ask_password }
+    describe '#passwords=' do
+      it 'accepts single password' do
+        pass = 'secret'
+        subject.passwords = pass
+        subject.passwords.should == [pass]
+      end
+      it 'accepts several passwords' do
+        pass = ['a','b']
+        subject.passwords = pass
+        subject.passwords.should == pass
+      end
+      it 'clears when given nil' do
+        subject.passwords = nil
+        subject.passwords.should be_empty
+      end
+    end
+
+    describe '#password' do
+      it 'returns nil when passwords is empty' do
+        subject.password.should be_nil
+      end
+      it 'grabs first of passwords' do
+        subject.passwords = ['a','b']
+        subject.password.should == 'a'
+      end
+    end
+    describe '#password=' do
+      it 'aliases passwords=' do
+        subject.method(:password=).should == subject.method(:passwords=)
+      end
+    end
+
+    describe '#fail_password' do
+      it 'advances to next password' do
+        subject.passwords = ['a','b']
+        subject.fail_password
+        subject.password.should == 'b'
+      end
+      it 'runs out of passwords' do
+        subject.passwords = ['a','b']
+        subject.fail_password
+        subject.fail_password
+        subject.password.should be_nil
+      end
+    end
+
+    describe '#reset_passwords' do
+      it 'resets password attempts' do
+        subject.passwords = ['a','b']
+        subject.fail_password
+        subject.reset_passwords
+        subject.password.should == 'a'
+      end
+    end
+
     describe '#ask_password' do
       before(:each) do
         @high_mock = stub_everything()
@@ -53,8 +109,6 @@ describe Password do
       end
     end
 
-    #---------------------------------------------------------------------
-    it { should respond_to :valid_password? }
     describe '#valid_password?' do
       it 'denies missing' do
         subject.valid_password?.should be_false

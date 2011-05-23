@@ -9,7 +9,7 @@ describe Base do
   ########################################################################
   OPTS_HOS = { :hostname => 'host' }
   OPTS_USR = { :username => 'user' }
-  OPTS_PAS = { :password => 'secret' }
+  OPTS_PAS = { :password => ['secret'] }
   OPTS_EML = { :email_address => 'user@host' }
   OPTS_H_U = OPTS_HOS.merge(OPTS_USR)
   OPTS_ALL = OPTS_H_U.merge(OPTS_PAS).merge(OPTS_EML)
