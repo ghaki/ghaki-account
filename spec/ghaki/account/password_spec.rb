@@ -77,6 +77,22 @@ describe Password do
       end
     end
 
+    describe 'failed_passwords?' do
+      it 'handles no passwords' do
+        subject.failed_passwords?.should be_false
+      end
+      it 'detects lack of failures' do
+        subject.passwords = ['a','b']
+        subject.failed_passwords?.should be_false
+      end
+      it 'detects failures' do
+        subject.passwords = ['a','b']
+        subject.fail_password
+        subject.fail_password
+        subject.failed_passwords?.should be_true
+      end
+    end
+
     describe '#retry_password?' do
       it 'handles no passwords' do
         subject.retry_password?.should be_false

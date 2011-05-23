@@ -49,7 +49,7 @@ module Password
     @cur_password = nil
   end
   def fail_password
-    _bad_passwords.push _try_passwords.shift
+    _bad_passwords.push _try_passwords.shift unless _try_passwords.empty?
   end
   def retry_password?
     !_try_passwords.empty?
@@ -57,6 +57,10 @@ module Password
 
   def valid_password?
     !passwords.empty?
+  end
+
+  def failed_passwords?
+    !_bad_passwords.empty?
   end
 
   def ask_password opts={}
