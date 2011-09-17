@@ -1,4 +1,3 @@
-require 'mocha_helper'
 require 'ghaki/account/database'
 
 module Ghaki module Account module DatabaseTesting

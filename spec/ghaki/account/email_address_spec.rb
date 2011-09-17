@@ -1,4 +1,3 @@
-require 'mocha_helper'
 require 'ghaki/account/email_address'
 require File.join(File.dirname(__FILE__),'syn_opts_helper')
 

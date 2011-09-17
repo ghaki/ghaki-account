@@ -1,5 +1,3 @@
-############################################################################
-require 'mocha_helper'
 require 'ghaki/account/username'
 require File.join(File.dirname(__FILE__),'syn_opts_helper')
 
